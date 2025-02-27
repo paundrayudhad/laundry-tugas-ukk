@@ -28,7 +28,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        $layanans = Layanan::get();
+        $layanans = Layanan::all();
         return view('transaksi.create', compact('layanans'));
     }
 
