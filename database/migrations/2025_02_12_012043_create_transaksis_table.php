@@ -24,8 +24,20 @@ return new class extends Migration
             
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
+
+        Schema::create('transaksi_details', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('transaksi_id');
+            $table->foreign('transaksi_id')->references('id')->on('transaksi')->onDelete('cascade');
             
-            $table->json('layanan_details'); // Menyimpan layanan dalam format JSON
+            $table->unsignedBigInteger('id_layanan');
+            $table->foreign('id_layanan')->references('id')->on('layanan')->onDelete('cascade');
+            
+            $table->integer('jumlah');
+            $table->double('harga_satuan');
+            $table->double('total_harga');
+            $table->timestamps();
         });
     }
 
@@ -34,6 +46,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('transaksi_details');
         Schema::dropIfExists('transaksi');
     }
 };

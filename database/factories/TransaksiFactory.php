@@ -28,13 +28,11 @@ class TransaksiFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_layanan' => Layanan::factory(),
             'nama_penerima' => $this->faker->name(),
             'alamat' => $this->faker->address(),
-            'jumlah' => $this->faker->numberBetween(1, 10),
-            'total_harga' => $this->faker->randomFloat(2, 10000, 1000000),
+            'total_harga' => $this->faker->randomFloat(2, 10000, 500000),
             'status' => $this->faker->randomElement(['pending', 'proses', 'selesai']),
-            'cabang_id' => Cabang::factory(),
+            'cabang_id' => 1,
             'user_id' => User::factory(),
         ];
     }

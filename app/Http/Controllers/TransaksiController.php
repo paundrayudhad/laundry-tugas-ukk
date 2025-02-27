@@ -14,7 +14,9 @@ class TransaksiController extends Controller
      */
     public function index(Request $request)
     {
-        $datas = Transaksi::with('cabang','layanan','users')->paginate(10);
+        $datas = Transaksi::with('cabang','user')
+                ->where('user_id', Auth::id())
+                ->paginate(10);
         return view('transaksi.index', compact('datas'));
     }
     /**
@@ -35,41 +37,54 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
 {
-    // Custom pesan validasi
     $messages = [
-        'id_layanan.required' => 'Layanan wajib dipilih!',
-        'id_layanan.exists' => 'Layanan yang dipilih tidak valid!',
-        'nama_penerima.required' => 'Nama penerima wajib diisi!',
-        'nama_penerima.max' => 'Nama penerima maksimal 255 karakter!',
-        'alamat.required' => 'Alamat wajib diisi!',
-        'jumlah.required' => 'Jumlah wajib diisi!',
-        'jumlah.integer' => 'Jumlah harus berupa angka!',
-        'jumlah.min' => 'Jumlah minimal harus 1!',
+        'id_layanan.*.required' => 'Layanan wajib dipilih!',
+        'id_layanan.*.exists' => 'Layanan tidak valid!',
+        'jumlah.*.required' => 'Jumlah wajib diisi!',
+        'jumlah.*.integer' => 'Jumlah harus angka!',
+        'jumlah.*.min' => 'Jumlah minimal 1!',
     ];
 
-    // Validasi input dengan pesan kustom
     $request->validate([
-        'id_layanan' => 'required|exists:layanan,id',
+        'id_layanan' => 'required|array',
+        'id_layanan.*' => 'required|exists:layanan,id',
+        'jumlah' => 'required|array',
+        'jumlah.*' => 'required|integer|min:1',
         'nama_penerima' => 'required|string|max:255',
         'alamat' => 'required|string',
-        'jumlah' => 'required|integer|min:1',
     ], $messages);
 
-    // Ambil harga layanan
-    $layanan = Layanan::findOrFail($request->id_layanan);
-    $total_harga = $layanan->harga_layanan * $request->jumlah;
+    $totalHarga = 0;
+    $details = [];
 
-    // Simpan ke database
-    Transaksi::create([
-        'id_layanan' => $request->id_layanan,
+    foreach ($request->id_layanan as $index => $layanan_id) {
+        $layanan = Layanan::findOrFail($layanan_id);
+        $jumlah = $request->jumlah[$index];
+        $hargaSatuan = $layanan->harga_layanan;
+        $subtotal = $hargaSatuan * $jumlah;
+
+        $details[] = [
+            'id_layanan' => $layanan_id,
+            'jumlah' => $jumlah,
+            'harga_satuan' => $hargaSatuan,
+            'total_harga' => $subtotal,
+        ];
+
+        $totalHarga += $subtotal;
+    }
+
+    $transaksi = Transaksi::create([
+        'user_id' => Auth::id(),
+        'cabang_id' => Auth::user()->cabang_id,
         'nama_penerima' => $request->nama_penerima,
         'alamat' => $request->alamat,
-        'jumlah' => $request->jumlah,
-        'total_harga' => $total_harga,
         'status' => 'pending',
-        'cabang_id' => Auth::user()->cabang_id,
-        'user_id' => Auth::id()
+        'total_harga' => $totalHarga,
     ]);
+
+    foreach ($details as $detail) {
+        $transaksi->details()->create($detail);
+    }
 
     return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil ditambahkan!');
 }
@@ -78,10 +93,18 @@ class TransaksiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaksi $transaksi)
-    {
-        //
+    public function show($id)
+{
+    $transaksi = Transaksi::with(['details.layanan', 'cabang'])->findOrFail($id);
+
+    // Cek apakah request berasal dari AJAX
+    if (request()->ajax()) {
+        return view('transaksi.show', compact('transaksi'))->render();
     }
+
+    return view('transaksi.show', compact('transaksi'));
+}
+
 
     /**
      * Show the form for editing the specified resource.

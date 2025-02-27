@@ -26,10 +26,12 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="custom-select" name="status">
-                                        <option>{{$transaksi->status}}</option>
+                                        <option value="{{$transaksi->status}}">{{$transaksi->status}}</option>
+                                        @if (!$transaksi->status = 'selesai')
                                         <option value="pending">Pending</option>
                                         <option value="proses">Proses</option>
                                         <option value="selesai">Selesai</option>
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="card-footer text-right">

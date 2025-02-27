@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Transaksi::factory()->count(10)->create(); // Buat 10 transaksi
+        User::factory()->count(10)->create(); // Buat 10 transaksi
     }
 }

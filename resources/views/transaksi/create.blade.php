@@ -12,37 +12,62 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <form class="form-horizontal" method="post" action="{{route('transaksi.store')}}">
+                            <form method="post" action="{{route('transaksi.store')}}">
                                 @csrf
-                                <div class="form-group">
-                                    <label>Pilih Layanan</label>
-                                    <select class="custom-select" name="id_layanan">
-                                        <option selected>Pilih Cabang</option>
-                                        @foreach ($layanans as $layanan)
-                                        <option value="{{$layanan->id}}">{{$layanan->nama_layanan}} - Rp {{ number_format($layanan->harga_layanan) }}</option>
-                                        @endforeach
-                                    </select>
+                                <div id="layanan-container">
+                                    <div class="layanan-group">
+                                        <label>Pilih Layanan</label>
+                                        <select class="custom-select" name="id_layanan[]">
+                                            <option selected>Pilih Layanan</option>
+                                            @foreach ($layanans as $layanan)
+                                            <option value="{{$layanan->id}}" data-harga="{{$layanan->harga_layanan}}">
+                                                {{$layanan->nama_layanan}} - Rp {{ number_format($layanan->harga_layanan) }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        <input type="number" class="form-control mt-2" name="jumlah[]" placeholder="Jumlah" required>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Nama Penerima</label>
-                                    <input type="name" class="form-control" name="nama_penerima" required>
+                                
+                                <button type="button" id="add-layanan" class="btn btn-success mt-2">Tambah Layanan</button>
+                            
+                                <div class="form-group mt-3">
+                                    <label>Nama Pelanggan</label>
+                                    <input type="text" class="form-control" name="nama_penerima" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat</label>
-                                    <textarea type="address" class="form-control" name="alamat" required></textarea>
+                                    <textarea class="form-control" name="alamat" required></textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label>Berat</label>
-                                    <input type="number" class="form-control" name="jumlah" required>
-                                </div>
+                            
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                    <button class="btn btn-secondary" type="reset">Reset</button>
-                                  </div>
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
     </section>
+    <script>
+        document.getElementById('add-layanan').addEventListener('click', function() {
+            let container = document.getElementById('layanan-container');
+            let newGroup = document.createElement('div');
+            newGroup.classList.add('layanan-group');
+            newGroup.innerHTML = `
+                <label>Pilih Layanan</label>
+                <select class="custom-select" name="id_layanan[]">
+                    <option selected>Pilih Layanan</option>
+                    @foreach ($layanans as $layanan)
+                    <option value="{{$layanan->id}}" data-harga="{{$layanan->harga_layanan}}">
+                        {{$layanan->nama_layanan}} - Rp {{ number_format($layanan->harga_layanan) }}
+                    </option>
+                    @endforeach
+                </select>
+                <input type="number" class="form-control mt-2" name="jumlah[]" placeholder="Jumlah" required>
+            `;
+            container.appendChild(newGroup);
+        });
+        </script>
 @endsection
+
