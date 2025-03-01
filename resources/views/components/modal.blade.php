@@ -25,10 +25,7 @@
                 <div class="modal-body">
                     <div x-html="content"></div>
                 </div>
-                <div class="modal-footer">
-                    <button onclick="printDetail()" class="btn btn-primary">
-                        <i class="fas fa-print"></i> Cetak Transaksi
-                    </button>
+                <div class="modal-footer">                  
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 </div>
             </div>

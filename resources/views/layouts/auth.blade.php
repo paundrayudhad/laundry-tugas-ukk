@@ -23,7 +23,6 @@
 
 <body>
     <div id="app">
-                @include('layouts.alert')
                 @yield('content')
     </div>
     <!-- General JS Scripts -->

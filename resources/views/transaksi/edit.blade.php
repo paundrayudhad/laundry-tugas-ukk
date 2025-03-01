@@ -26,8 +26,8 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="custom-select" name="status">
-                                        <option value="{{$transaksi->status}}">{{$transaksi->status}}</option>
-                                        @if (!$transaksi->status = 'selesai')
+                                        <option value="{{$transaksi->status}}" disabled selected>{{ucwords($transaksi->status)}}</option>
+                                        @if ($transaksi->status !== 'selesai')
                                         <option value="pending">Pending</option>
                                         <option value="proses">Proses</option>
                                         <option value="selesai">Selesai</option>

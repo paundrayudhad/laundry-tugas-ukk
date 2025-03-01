@@ -16,7 +16,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
+                                            <th scope="col">ID Transaksi</th>
                                             <th scope="col">Nama Penerima</th>
                                             <th scope="col">Alamat</th>
                                             <th scope="col">Total Harga</th>
@@ -33,7 +33,7 @@
                                         @endphp
                                         @foreach ($datas as $data)
                                             <tr>
-                                                <th scope="row">{{ $no++ }}</th>
+                                                <th scope="row">{{ $data->id }}</th>
                                                 <td>{{ $data->nama_penerima }}</td>
                                                 <td>{{ $data->alamat }}</td>
                                                 <td>Rp {{ number_format($data->total_harga, 0, ',', '.') }}</td>

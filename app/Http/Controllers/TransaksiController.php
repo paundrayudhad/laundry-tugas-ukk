@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Layanan;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Transaksi;
+use PDF;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -16,6 +17,7 @@ class TransaksiController extends Controller
     {
         $datas = Transaksi::with('cabang','user')
                 ->where('user_id', Auth::id())
+                ->latest()
                 ->paginate(10);
         return view('transaksi.index', compact('datas'));
     }
@@ -150,5 +152,14 @@ class TransaksiController extends Controller
         //
         $transaksi->delete();
         return back()->with('success', 'Berhasil dihapus');
+    }
+
+    public function cetakStruk($id)
+    {
+        $transaksi = Transaksi::with('cabang', 'user')->findOrFail($id);
+
+        $pdf = PDF::loadView('pdf.struk', compact('transaksi'));
+
+        return $pdf->stream('struk_transaksi.pdf');
     }
 }

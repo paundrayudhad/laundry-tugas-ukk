@@ -16,6 +16,8 @@
 
 
   <!-- CSS Libraries -->
+  @livewireStyles
+
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
@@ -24,6 +26,7 @@
   <style>
     [x-cloak] { display: none !important; }
 </style>
+@livewireStyles
 </head>
 
 <body>
@@ -57,12 +60,15 @@
     <script src="{{asset('assets/js/stisla.js')}}"></script>
 
     <!-- JS Libraies -->
+    @livewireScripts
+
 
     <!-- Page Specific JS File -->
 
     <!-- Template JS File -->
     <script src="{{asset('assets/js/scripts.js')}}"></script>
     <script src="{{asset('assets/js/custom.js')}}"></script>
+    
 </body>
 
 </html>

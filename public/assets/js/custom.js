@@ -1,8 +1,13 @@
-/**
- *
- * You can write your JS code here, DO NOT touch the default style file
- * because it will make it harder for you to update.
- * 
- */
 
-"use strict";
+document.addEventListener("DOMContentLoaded", function() {
+        Livewire.on('showModal', id => {
+            var myModal = new bootstrap.Modal(document.getElementById(id));
+            myModal.show();
+        });
+
+        Livewire.on('hideModal', id => {
+            var myModal = bootstrap.Modal.getInstance(document.getElementById(id));
+            myModal.hide();
+        });
+    });
+
