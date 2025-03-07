@@ -59,8 +59,51 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability# Sistem Manajemen Laundry
+
+## 📌 Deskripsi
+
+Sistem Manajemen Laundry ini dirancang untuk membantu operasional laundry dengan fitur manajemen cabang, layanan, pengguna, transaksi, dan laporan.
+
+## 🏠 Dashboard
+
+### Admin
+
+Menu utama bagi admin untuk mengelola sistem.
+
+📂 Master Data (Dropdown)
+
+Kelola Cabang - Mengelola data cabang laundry.
+
+Kelola Layanan - Mengelola jenis layanan yang tersedia.
+
+Kelola User - Mengelola akun pengguna dalam sistem.
+
+📊 Laporan
+
+Akses ke halaman laporan transaksi dan operasional.
+
+### 👥 Menu Karyawan
+
+Dashboard
+
+#### Menu utama bagi karyawan untuk memantau operasional.
+
+Transaksi (Dropdown)
+
+Buat Transaksi - Membuat transaksi baru.
+
+Riwayat Transaksi - Melihat daftar transaksi yang telah dibuat.
+
+## 🚀 Teknologi yang Digunakan
+
+Laravel 11 (Backend)
+
+Blade Template (Frontend)
+
+MySQL (Database) within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
