@@ -1,8 +1,6 @@
-# FLOWCHART
-<img src="flowchart.jpeg">
-
 # Sistem Manajemen Laundry
-
+## FLOWCHART
+<img src="flowchart.jpeg">
 ## 📌 Deskripsi 
 Sistem Manajemen Laundry ini dirancang untuk membantu operasional laundry dengan fitur manajemen cabang, layanan, pengguna, transaksi, dan laporan.
 
