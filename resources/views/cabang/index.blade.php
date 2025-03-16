@@ -36,16 +36,18 @@
                         <td>{{$cabang->alamat}}</td>
                         <td>{{$cabang->no_hp}}</td>
                         <td>
+                            <div class="d-flex align-items-center gap-2">
                             <a class="btn btn-warning text-white mr-1" href="{{route('cabang.edit', $cabang->id)}}">Edit</a>
                             <form action="{{route('cabang.destroy', $cabang->id)}}" method="post" onsubmit="return confirm('apakah anda ingin menghapus?')">
                                 @csrf
                                 @method('DELETE')
                             <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
+                            </div>
                         </td>
                       </tr>
                     @endforeach
-                  
+
                 </tbody>
               </table>
             </div>

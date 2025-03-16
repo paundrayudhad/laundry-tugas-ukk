@@ -1,3 +1,6 @@
+# FLOWCHART
+<img src="flowchart.jpeg">
+
 # Sistem Manajemen Laundry
 
 ## 📌 Deskripsi 

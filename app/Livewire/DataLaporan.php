@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Transaksi;
-use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
 
@@ -17,7 +16,8 @@ class DataLaporan extends Component
     public $selectedTransaksi;
     public $showModal = false;
 
-    protected $queryString = ['status', 'start_date', 'end_date'];
+    protected $queryString = ['status' => ['except' => 'all'], 'start_date', 'end_date'];
+
 
     public function updating($field)
     {
@@ -34,9 +34,14 @@ class DataLaporan extends Component
     public function closeModal()
     {
     $this->showModal = false;
-    }   
+    }
+    public function filterLaporan()
+{
+    $this->resetPage();
+    $this->render(); // Paksa render ulang komponen
+}
 
-    
+
     public function render()
     {
         $query = Transaksi::with('cabang', 'user');
@@ -47,7 +52,12 @@ class DataLaporan extends Component
 
         if ($this->start_date && $this->end_date) {
             $query->whereBetween('created_at', [$this->start_date, $this->end_date]);
+        } elseif ($this->start_date) {
+            $query->whereDate('created_at', '>=', $this->start_date);
+        } elseif ($this->end_date) {
+            $query->whereDate('created_at', '<=', $this->end_date);
         }
+
 
         $datas = $query
         ->latest()

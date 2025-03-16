@@ -34,18 +34,21 @@
                         <td>{{$layanan->nama_layanan}}</td>
                         <td>{{$layanan->harga_layanan}}</td>
                         <td>
-                            <a class="btn btn-warning text-white mr-1" href="{{route('layanan.edit', $layanan->id)}}">Edit</a>
+                            <div class="d-flex align-items-center">
+                            <a class="btn btn-warning text-white mr-1" href="{{route('layanan.edit', $layanan->id)}}"> <i class="fas fa-edit"></i></a>
                             <form action="{{route('layanan.destroy', $layanan->id)}}" method="post" onsubmit="return confirm('apakah anda ingin menghapus?')">
                                 @csrf
                                 @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                            <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
                             </form>
+                            </div>
                         </td>
                       </tr>
                     @endforeach
-                  
+
                 </tbody>
               </table>
+              {{ $layanans->links() }}
             </div>
           </div>
       </div>

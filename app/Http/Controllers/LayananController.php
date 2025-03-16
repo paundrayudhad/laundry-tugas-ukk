@@ -13,7 +13,7 @@ class LayananController extends Controller
     public function index()
     {
         //
-        $layanans = Layanan::all();
+        $layanans = Layanan::paginate(10);
         return view('layanan.index', compact('layanans'));
     }
 
@@ -37,7 +37,7 @@ class LayananController extends Controller
             if (Layanan::create($validated)) {
                 return redirect()->route('layanan.index')->with('success', 'Layanan Berhasil dibuat');
             }
-        
+
             return back()->with('error', 'Gagal membuat Layanan, coba lagi.');
         }
     }
@@ -47,7 +47,7 @@ class LayananController extends Controller
      */
     public function show(Layanan $layanan)
     {
-        //  
+        //
     }
 
     /**
@@ -69,7 +69,7 @@ class LayananController extends Controller
             if ($layanan->update($validated)) {
                 return redirect()->route('layanan.index')->with('success', 'Layanan Berhasil dibuat');
             }
-        
+
             return back()->with('error', 'Gagal membuat Layanan, coba lagi.');
     }
 

@@ -14,18 +14,18 @@ class LaporanTransaksi extends Controller
      */
     public function index(Request $request)
     {
-        $query = Transaksi::with('cabang', 'user');
+        // $query = Transaksi::with('cabang', 'user');
 
-        if ($request->has('status') && $request->status != 'all') {
-            $query->where('status', $request->status);
-        }
-        
-        if ($request->filled('start_date') && $request->filled('end_date')) {
-            $query->whereBetween('created_at', [$request->start_date, $request->end_date]);
-        }
-        
-        $datas = $query->paginate(10);
-        return view('laporan.index', compact('datas'));
+        // if ($request->has('status') && $request->status != 'all') {
+        //     $query->where('status', $request->status);
+        // }
+
+        // if ($request->filled('start_date') && $request->filled('end_date')) {
+        //     $query->whereBetween('created_at', [$request->start_date, $request->end_date]);
+        // }
+
+        // $datas = $query->paginate(10);
+        return view('laporan.index');
     }
 
     /**
