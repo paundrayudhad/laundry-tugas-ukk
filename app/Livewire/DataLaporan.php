@@ -5,23 +5,25 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Transaksi;
 use Livewire\WithPagination;
+use App\Models\Cabang;
 
 
 class DataLaporan extends Component
 {
     use WithPagination;
     public $status = 'all';
+    public $cabang = 'all';
     public $start_date;
     public $end_date;
     public $selectedTransaksi;
     public $showModal = false;
 
-    protected $queryString = ['status' => ['except' => 'all'], 'start_date', 'end_date'];
+    protected $queryString = ['status' => ['except' => 'all'], 'start_date', 'end_date', 'cabang'];
 
 
     public function updating($field)
     {
-        if (in_array($field, ['status', 'start_date', 'end_date'])) {
+        if (in_array($field, ['status', 'start_date', 'end_date', 'cabang'])) {
             $this->resetPage();
         }
     }
@@ -58,11 +60,18 @@ class DataLaporan extends Component
             $query->whereDate('created_at', '<=', $this->end_date);
         }
 
+        if ($this->cabang && $this->cabang !== 'all') {
+            $query->where('cabang_id', $this->cabang);
+        }
+
+
 
         $datas = $query
         ->latest()
         ->paginate(10);
 
-        return view('livewire.data-laporan', compact('datas'));
+        $cabangs = Cabang::all();;
+
+        return view('livewire.data-laporan', compact('datas', 'cabangs'));
     }
 }

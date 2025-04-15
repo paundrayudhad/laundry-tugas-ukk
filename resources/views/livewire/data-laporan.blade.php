@@ -14,6 +14,16 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Cabang</label>
+                        <select class="custom-select" wire:model="cabang">
+                            <option value="all">Semua</option>
+                            @foreach ($cabangs as $index => $data)
+                                <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label>Dari Tanggal</label>
                         <input type="date" class="form-control" wire:model="start_date">
                     </div>
