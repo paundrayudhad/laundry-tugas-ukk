@@ -54,10 +54,7 @@ class TransaksiController extends Controller
         'jumlah.*' => 'required|integer|min:1',
         'nama_penerima' => 'required|string|max:255',
         'alamat' => 'required|string',
-<<<<<<< HEAD
-=======
         'tanggal_pengambilan' => 'required'
->>>>>>> eadfbc5 (dsfs)
     ], $messages);
 
     $totalHarga = 0;
@@ -84,10 +81,7 @@ class TransaksiController extends Controller
         'cabang_id' => Auth::user()->cabang_id,
         'nama_penerima' => $request->nama_penerima,
         'alamat' => $request->alamat,
-<<<<<<< HEAD
-=======
         'tanggal_pengambilan' => $request->tanggal_pengambilan,
->>>>>>> eadfbc5 (dsfs)
         'status' => 'pending',
         'total_harga' => $totalHarga,
     ]);
