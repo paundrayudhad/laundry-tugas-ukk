@@ -11,7 +11,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/login');
 });
+<<<<<<< HEAD
 
+=======
+Route::get('/landing', function () {
+    $service = Layanan::all();
+    return view('landing', compact('service'));
+});
+>>>>>>> eadfbc5 (dsfs)
 Auth::routes();
 Route::get('/cetak-struk/{id}', [TransaksiController::class, 'cetakStruk'])->name('cetak.struk');
 Route::get('/laporan/download', [LaporanTransaksi::class, 'download'])->name('laporan.download');  

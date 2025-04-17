@@ -18,6 +18,10 @@ return new class extends Migration
             $table->double('total_harga');
             $table->enum('status', ['pending', 'proses', 'selesai']);
             $table->timestamps();
+<<<<<<< HEAD
+=======
+            $table->date('tanggal_diambil')->nullable();
+>>>>>>> eadfbc5 (dsfs)
             
             $table->unsignedBigInteger('cabang_id');
             $table->foreign('cabang_id')->references('id')->on('cabangs')->onDelete('cascade');

@@ -39,7 +39,14 @@
                                     <label>Alamat</label>
                                     <textarea class="form-control" name="alamat" required></textarea>
                                 </div>
+<<<<<<< HEAD
                             
+=======
+                                <div class="form-group mt-3">
+                                    <label>Tanggal Pengambilan</label>
+                                    <input type="date" class="form-control" name="tanggal_pengambilan" required>
+                                </div>
+>>>>>>> eadfbc5 (dsfs)
                                 <div class="card-footer text-right">
                                     <button class="btn btn-primary" type="submit">Submit</button>
                                 </div>

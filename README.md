@@ -32,7 +32,11 @@ Sistem Manajemen Laundry ini dirancang untuk membantu operasional laundry dengan
 ### **Transaksi (Dropdown)**
 ```yaml
 - Buat Transaksi: Membuat transaksi baru.
+<<<<<<< HEAD
 - Riwayat Transaksi: Melihat daftar transaksi yang telah dibuat.
+=======
+- Riwayat Transaksi: Melihat daftar transaksi yang telah dibuat
+>>>>>>> eadfbc5 (dsfs)
 ```
 
 ## 🚀 Teknologi yang Digunakan

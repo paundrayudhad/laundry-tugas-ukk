@@ -66,7 +66,11 @@
                         $warna = 'success';
                     }
                     @endphp
+<<<<<<< HEAD
                          <tr wire:key="transaksi-{{ $data->id }}">
+=======
+                         <tr wire:key="transaksi-{{ $data->id }}" wire:poll>
+>>>>>>> eadfbc5 (dsfs)
                             <th>{{ $data->id }}</th>
                             <td>{{ $data->nama_penerima }}</td>
                             <td>{{ $data->alamat }}</td>

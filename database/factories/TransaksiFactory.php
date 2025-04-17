@@ -30,10 +30,17 @@ class TransaksiFactory extends Factory
         return [
             'nama_penerima' => $this->faker->name(),
             'alamat' => $this->faker->address(),
+<<<<<<< HEAD
             'total_harga' => $this->faker->randomFloat(2, 10000, 500000),
             'status' => $this->faker->randomElement(['pending', 'proses', 'selesai']),
             'cabang_id' => 1,
             'user_id' => User::factory(),
+=======
+            'total_harga' => $this->faker->randomFloat(2, 2000, 8000),
+            'status' => $this->faker->randomElement(['pending', 'proses', 'selesai']),
+            'cabang_id' => $this->faker->numberBetween(1,2),
+            'user_id' => 4,
+>>>>>>> eadfbc5 (dsfs)
         ];
     }
 }

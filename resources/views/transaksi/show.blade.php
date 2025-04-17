@@ -28,8 +28,13 @@
                     <td>{{ $transaksi->created_at->format('d M Y, H:i') }}</td>
                 </tr>
                 <tr>
+<<<<<<< HEAD
                     <th>Tanggal Diupdate</th>
                     <td>{{ $transaksi->updated_at->format('d M Y, H:i') }}</td>
+=======
+                    <th>Tanggal Diambil</th>
+                    <td>{{ \Carbon\Carbon::parse($transaksi->tanggal_pengambilan)->translatedFormat('d F Y') }}</td>
+>>>>>>> eadfbc5 (dsfs)
                 </tr>
                 <tr>
                     <th>Cabang</th>
